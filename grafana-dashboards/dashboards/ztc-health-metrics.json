@@ -1472,7 +1472,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "ZTC Health Metrics - OTel Collector Operations",
-  "uid": "ztc-health-metrics-improved",
+  "uid": "ztc-health-metrics",
   "version": 13,
   "weekStart": ""
 }
