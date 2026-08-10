@@ -15,7 +15,7 @@
       }
     ]
   },
-  "description": "ZTC Internal Metrics - Monitor Z telemetry data using spanmetrics connector. Focuses on CICS, DB2, MQ, and IMS subsystems.",
+  "description": "ZTC Span Metrics - Monitor Z telemetry data using spanmetrics connector. Focuses on CICS, DB2, MQ, and IMS subsystems.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
@@ -62,7 +62,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 3,
+        "w": 5,
         "x": 0,
         "y": 1
       },
@@ -131,8 +131,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 3,
-        "x": 3,
+        "w": 5,
+        "x": 5,
         "y": 1
       },
       "id": 4,
@@ -196,8 +196,8 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 6,
-        "x": 6,
+        "w": 5,
+        "x": 10,
         "y": 1
       },
       "id": 5,
@@ -1902,8 +1902,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "ZTC Internal Metrics",
-  "uid": "ztc-internal-metrics",
+  "title": "ZTC Span Metrics",
+  "uid": "ztc-span-metrics",
   "version": 1,
   "weekStart": ""
 }
