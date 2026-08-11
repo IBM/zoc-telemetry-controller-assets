@@ -991,7 +991,7 @@
             }
           },
           "mappings": [],
-          "unit": "short"
+          "unit": "spans/s"
         },
         "overrides": []
       },
@@ -1012,8 +1012,7 @@
           "placement": "right",
           "showLegend": true,
           "values": [
-            "value",
-            "percent"
+            "value"
           ]
         },
         "pieType": "pie",
@@ -1037,9 +1036,11 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by (zos_sysplex_name) (traces_span_metrics_calls_total{zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\", service_name=~\"$service\"})",
+          "exemplar": false,
+          "expr": "sum by (zos_sysplex_name) (rate(traces_span_metrics_calls_total{zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\", service_name=~\"$service\"}[$__range]))",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -1065,7 +1066,7 @@
             }
           },
           "mappings": [],
-          "unit": "short"
+          "unit": "spans/s"
         },
         "overrides": []
       },
@@ -1086,8 +1087,7 @@
           "placement": "right",
           "showLegend": true,
           "values": [
-            "value",
-            "percent"
+            "value"
           ]
         },
         "pieType": "pie",
@@ -1111,7 +1111,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by (mainframe_lpar_name) (traces_span_metrics_calls_total{zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\", service_name=~\"$service\"})",
+          "expr": "sum by (mainframe_lpar_name)( rate(traces_span_metrics_calls_total{zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\", service_name=~\"$service\"}[$__range]))",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1138,8 +1138,9 @@
               "viz": false
             }
           },
+          "decimals": 2,
           "mappings": [],
-          "unit": "short"
+          "unit": "spans/s"
         },
         "overrides": []
       },
@@ -1160,14 +1161,13 @@
           "placement": "right",
           "showLegend": true,
           "values": [
-            "value",
-            "percent"
+            "value"
           ]
         },
         "pieType": "pie",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "mean"
           ],
           "fields": "",
           "values": false
@@ -1184,8 +1184,12 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "sum(rate(traces_span_metrics_calls_total{tps_system=\"cics\", zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\", service_name=~\"$service\"}[$__rate_interval]))",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(rate(traces_span_metrics_calls_total{\n  tps_system=\"cics\",\n  zos_sysplex_name=~\"$sysplex\",\n  mainframe_lpar_name=~\"$lpar\"\n}[$__range]))",
+          "instant": true,
           "legendFormat": "CICS",
+          "range": false,
           "refId": "A"
         },
         {
@@ -1193,8 +1197,12 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "sum(rate(traces_span_metrics_calls_total{db_system_name=\"ibm.db2\", zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\", service_name=~\"$service\"}[$__rate_interval]))",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(rate(traces_span_metrics_calls_total{\n  db_system_name=\"ibm.db2\",\n  zos_sysplex_name=~\"$sysplex\",\n  mainframe_lpar_name=~\"$lpar\"\n}[$__range]))",
+          "instant": true,
           "legendFormat": "DB2",
+          "range": false,
           "refId": "B"
         },
         {
@@ -1202,8 +1210,13 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "sum(rate(traces_span_metrics_calls_total{messaging_system=\"ibmmq\", zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\", service_name=~\"$service\"}[$__rate_interval]))",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(rate(traces_span_metrics_calls_total{\n  messaging_system=\"ibmmq\",\n  zos_sysplex_name=~\"$sysplex\",\n  mainframe_lpar_name=~\"$lpar\"\n}[$__range]))",
+          "hide": false,
+          "instant": true,
           "legendFormat": "MQ",
+          "range": false,
           "refId": "C"
         },
         {
@@ -1211,8 +1224,12 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "sum(rate(traces_span_metrics_calls_total{ibm_ims_processing_ims!=\"\", zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\", service_name=~\"$service\"}[$__rate_interval]))",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(rate(traces_span_metrics_calls_total{\n  ibm_ims_processing_ims!=\"\",\n  zos_sysplex_name=~\"$sysplex\",\n  mainframe_lpar_name=~\"$lpar\"\n}[$__range]))",
+          "instant": true,
           "legendFormat": "IMS",
+          "range": false,
           "refId": "D"
         }
       ],
@@ -1238,7 +1255,7 @@
             }
           },
           "mappings": [],
-          "unit": "short"
+          "unit": "spans/s"
         },
         "overrides": []
       },
@@ -1258,7 +1275,9 @@
           "displayMode": "table",
           "placement": "right",
           "showLegend": true,
-          "values": []
+          "values": [
+            "value"
+          ]
         },
         "pieType": "pie",
         "reduceOptions": {
@@ -1281,7 +1300,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by (service_name)(\n  rate(traces_span_metrics_calls_total{\n    zos_sysplex_name=~\"$sysplex\",\n    mainframe_lpar_name=~\"$lpar\",\n    service_name=~\"$service\"\n  }[$__rate_interval])\n)\n\n",
+          "expr": "sum by (service_name)( rate\n  (traces_span_metrics_calls_total{\n    zos_sysplex_name=~\"$sysplex\",\n    mainframe_lpar_name=~\"$lpar\",\n    service_name=~\"$service\"\n  }[$__range])\n)",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1836,14 +1855,15 @@
           "type": "prometheus",
           "uid": "${datasource}"
         },
-        "definition": "label_values(traces_span_metrics_calls_total{zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\"}, service_name)",
+        "definition": "label_values(traces_span_metrics_calls_total{zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\", span_name=~\"${subsystem:pipe}\"},service_name)",
         "includeAll": true,
         "label": "Service",
         "multi": true,
         "name": "service",
         "options": [],
         "query": {
-          "query": "label_values(traces_span_metrics_calls_total{zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\"}, service_name)",
+          "qryType": 1,
+          "query": "label_values(traces_span_metrics_calls_total{zos_sysplex_name=~\"$sysplex\", mainframe_lpar_name=~\"$lpar\", span_name=~\"${subsystem:pipe}\"},service_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
@@ -1852,6 +1872,7 @@
         "type": "query"
       },
       {
+        "allValue": "(?i)CICS.*|(?i)db2.*|(?i)IMS.*|(?i)MQ.*",
         "current": {
           "text": [
             "$__all"
@@ -1868,30 +1889,25 @@
           {
             "selected": false,
             "text": "CICS",
-            "value": "CICS"
+            "value": "(?i)CICS.*"
           },
           {
             "selected": false,
             "text": "DB2",
-            "value": "DB2"
+            "value": "(?i)db2.*"
           },
           {
             "selected": false,
             "text": "IMS",
-            "value": "IMS"
+            "value": "(?i)IMS.*"
           },
           {
             "selected": false,
             "text": "MQ",
-            "value": "MQ"
-          },
-          {
-            "selected": false,
-            "text": "All",
-            "value": "All"
+            "value": "(?i)MQ.*"
           }
         ],
-        "query": "CICS,DB2,IMS,MQ,All",
+        "query": "CICS : (?i)CICS.*, DB2 : (?i)db2.*, IMS : (?i)IMS.*, MQ : (?i)MQ.*",
         "type": "custom"
       }
     ]

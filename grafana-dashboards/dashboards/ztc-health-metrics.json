@@ -95,7 +95,11 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "count(up{job=~\".*otel.*\", instance=~\".*:8888\"} == 1)",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(up{job=\"otel-collector\", pod=~\"otel-collector-.*\"} == 1)",
+          "instant": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1466,13 +1470,13 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "ZTC Health Metrics - OTel Collector Operations",
   "uid": "ztc-health-metrics",
-  "version": 13,
+  "version": 1,
   "weekStart": ""
 }
